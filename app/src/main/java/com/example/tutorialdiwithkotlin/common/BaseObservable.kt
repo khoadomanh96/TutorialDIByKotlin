@@ -12,13 +12,12 @@ abstract class BaseObservable<LISTENER_CLASS> {
     private val mListeners = Collections.newSetFromMap(ConcurrentHashMap<LISTENER_CLASS,Boolean>(1))
 
     open fun registerListener(listener : LISTENER_CLASS) {
-        mListeners.plus(listener)
+        mListeners.add(listener)
     }
     open fun unregisterListener(listener: LISTENER_CLASS) {
-        mListeners.minus(listener)
+        mListeners.remove(listener)
     }
     protected open fun getListeners() : Set<LISTENER_CLASS> {
         return Collections.unmodifiableSet(mListeners)
     }
-
 }

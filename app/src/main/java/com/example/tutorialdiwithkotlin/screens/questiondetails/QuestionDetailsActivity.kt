@@ -58,9 +58,8 @@ class QuestionDetailsActivity : AppCompatActivity(),
     override fun onStart() {
         super.onStart()
         mViewMvc?.registerListener(this@QuestionDetailsActivity)
-        mCall?.apply {
-            cancel()
-        }
+        mCall = mStackoverflowApi?.questionDetails(mQuestionId?:"")
+        mCall?.enqueue(this)
     }
 
     override fun onStop() {
